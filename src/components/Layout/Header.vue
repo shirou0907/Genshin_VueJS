@@ -2,16 +2,17 @@
     <div class="wrap-header">
         <div class="header">
             <div class="wrap-audio">
-                <audio ref="audioPlay" muted="muted" loop="loop" autoplay="true" src="../.././audio/music.mp3" type="audio/mpeg" class="audio" controls></audio>
-                <audio ref="audioPlay2" muted="muted" loop="loop" autoplay="true" src="../.././audio/music2.mp3" type="audio/mpeg" class="audio" controls></audio>
+                <audio ref="audioPlay" muted="muted" loop="loop" autoplay="true" src="../.././audio/music.mp3"
+                    type="audio/mpeg" class="audio" controls></audio>
+                <audio ref="audioPlay2" muted="muted" loop="loop" autoplay="true" src="../.././audio/music2.mp3"
+                    type="audio/mpeg" class="audio" controls></audio>
             </div>
 
             <div class="header-link">
                 <div class="header-logo">
-                    <img v-if="openMusic" @click="openMusic=false" width=32 src="../.././img/item/musicon.png"
-                        alt="">
-                    <img v-if="!openMusic" @click="openMusic=true, playMusic()" width=32 src="../.././img/item/musicoff.png"
-                        alt="">
+                    <img v-if="openMusic" @click="openMusic=false" width=32 src="../.././img/item/musicon.png" alt="">
+                    <img v-if="!openMusic" @click="openMusic=true, playMusic()" width=32
+                        src="../.././img/item/musicoff.png" alt="">
                     <router-link to='/home'>
                         <img src="../.././img/logo-header.png" alt="">
                     </router-link>
@@ -25,10 +26,11 @@
                 <router-link to='/characters' active-class="active" class="header-link-item">
                     Nhân vật
                 </router-link>
-                <router-link to='/a' active-class="active" class="header-link-item">
-                    Tư liệu
+                <router-link to='/game' active-class="active" class="header-link-item">
+                    Giới thiệu game
                 </router-link>
-                <router-link :to="{name: 'create'}" active-class="active" class="header-link-item" v-if="$store.state.isLogin">
+                <router-link :to="{name: 'create'}" active-class="active" class="header-link-item"
+                    v-if="$store.state.isLogin">
                     Đăng bài
                 </router-link>
             </div>
@@ -74,7 +76,7 @@
         data() {
             return {
                 user: JSON.parse(localStorage.getItem("user-info")),
-                openLogin: false,
+                openLogin: "",
                 openMusic: false,
             }
         },
@@ -115,6 +117,7 @@
         position: fixed;
         left: 0;
         right: 0;
+        opacity: .95;
         z-index: 10000;
     }
 

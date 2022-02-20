@@ -93,6 +93,7 @@
 
             async deletePost() {
                 var vm = this;
+                this.isLoading = true;
                 await axios.delete(`${process.env.VUE_APP_BACKEND_URL}/user/post/${vm.postChoose}`, {
                     headers: {
                         'Content-Type': 'application/json',

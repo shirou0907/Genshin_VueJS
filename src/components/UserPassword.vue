@@ -97,8 +97,7 @@
     }
 
     .user-password {
-        max-width: 300px;
-        margin: auto;
+       padding: 0 60px;
     }
 
     .form-input {

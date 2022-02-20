@@ -19,7 +19,7 @@
             <div class="description">{{posts.description}}</div>
 
             <div class="youtube-video" style="display: flex; justify-content: center; margin-bottom: 40px">
-                <iframe width="800" height="480" :src="`https://www.youtube-nocookie.com/embed/${posts.videoLink}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="800" height="480" :src="`https://www.youtube.com/embed/${posts.videoLink}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -27,6 +27,12 @@
         <div v-if="$store.state.isLogin" class="send-comment">
             <textarea class="text-comment" name="comment" v-model="send" placeholder="Để lại bình luận của bạn về bài viết này"></textarea> 
             <div @click.prevent = "sendComment()" class="btn-comment" :class="{'btn-comment-active': isInput}">Gửi</div>
+        </div>
+
+        <div v-if="isLoadingComment" class="d-flex justify-content-end mt-4">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
 
         <div v-if="!$store.state.isLogin" class="send-comment-disabled">

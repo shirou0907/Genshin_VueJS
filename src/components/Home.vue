@@ -65,6 +65,15 @@
                         style="background-image: url('https://uploadstatic-sea.hoyoverse.com/contentweb/20210720/2021072015230536749.jpg')">
                     </div>
                 </div>
+                <div class="wrap-land">
+                    <div class="map-title">
+                        Vui lòng đợi
+                    </div>
+                    <div class="map-character">
+                       <img src="../img/item/hutao.png" alt="">
+                    </div>
+                    <div class="map-land" style="background: url('https://genshin.hoyoverse.com/_nuxt/img/b57475e.jpg') center / cover no-repeat"></div>
+                </div>
             </div>
 
             <div class="home-contact" :class="{'home-contact--in' : showContact, 'hide': !enableContact}">
@@ -94,52 +103,40 @@
             </div>
         </div>
 
-        <div class="home-view">
-            <div class="wrap-swiper">
-                <swiper class="swiper" :options="swiperOption">
-                    <swiper-slide v-for="(img, i) in imgs" :key="i">
-                        <img class="img-slide" :src="require(`../img/${img}.jpg`)">
-                    </swiper-slide>
-                    <div class="swiper-pagination" slot="pagination"></div>
-                    <div class="swiper-button-prev" slot="button-prev"></div>
-                    <div class="swiper-button-next" slot="button-next"></div>
-                </swiper>
+        <div class="home-game">
+            <div class="home-title">
+                Cấu hình yêu cầu
+            </div>
+            <div class="home-option">
+                <div v-for="(option, i) in options" :key ="i" 
+                class="option-item" 
+                :class="{'option-active': option.isChoose}"
+                @click="choose= option.name, changeActive(), option.isChoose = true">
+                {{option.name}}
+                </div>
+            </div>
+            <div class="option-description">
+                <Option :option="choose"/>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
-    import {
-        Swiper,
-        SwiperSlide
-    } from 'vue-awesome-swiper'
-    import 'swiper/css/swiper.css'
+    import Option from './Option.vue'
     export default {
-        name: 'swiper-example-multiple-slides-per-biew',
-        title: 'Multiple slides per view',
-        components: {
-            Swiper,
-            SwiperSlide
-        },
+        components: {Option},
         data() {
             return {
-                showContact: true,
+                showContact: false,
                 enableContact: false,
-                imgs: ['modstard', 'liyue', 'inazuma'],
-                swiperOption: {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
-                    },
-                    loop: true,
-                }
+                options: [
+                        {name: 'Window', isChoose: true},
+                        {name: 'Android', isChoose: false},
+                        {name: 'iOS', isChoose: false}
+                    ],
+                choose: 'Window',
             }
         },
         activated() {
@@ -148,7 +145,12 @@
         methods: {
             handleScroll() {
                 this.enableContact = window.scrollY > 200;
-            }
+            },
+            changeActive() {
+                this.options.forEach(e=> {
+                    e.isChoose = false
+                })
+            },
         },
         created() {
             window.addEventListener('scroll', this.handleScroll);
@@ -253,6 +255,7 @@
         left: -32px;
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
+        cursor: pointer;
     }
 
     .home-contact--in {
@@ -285,6 +288,7 @@
         background: center/cover no-repeat;
         overflow: hidden;
         position: relative;
+        cursor: pointer;
     }
 
     .map-land {
@@ -299,6 +303,7 @@
 
     .wrap-land:hover .map-land {
         transform: scale(1.05);
+        border: 12px solid #fff;
     }
 
     .map-character {
@@ -327,80 +332,38 @@
         background: url('../img/background4.png') center / cover no-repeat;
     }
 
-    .img-slide {
-        width: 70%;
-        display: block;
-        margin: auto;
-        border-radius: 4px;
-        filter: brightness(1.5);
+    .home-game {
+        min-height: 100vh;
+        background-color: #f0f0f0;
     }
 
-    .img-character {
-        position: absolute;
-        top: 0;
-        right: 40px;
-        opacity: 0;
-        transition: opacity 1s;
+    .home-title {
+        text-align: center;
+        font-size: 52px;
+        font-weight: bold;
+        padding-top: 60px;
     }
 
-    .img-character-active {
-        opacity: 1;
+    .home-option {
+        display:flex;
+        justify-content: center;
     }
 
-    .swiper-container {
-        padding: 40px 0;
+    .option-item {
+        margin-top: 30px;
+        padding: 0 30px;
+        font-size: 24px;
+        font-weight: 500;
+        cursor: pointer;
+        color: #999;
+        border-bottom: 6px solid #ccc;
+        transition: all linear .1s;
     }
 
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 80px;
-        height: 60px;
-        transition: transform linear .3s;
+    .option-active {
+        color: #000;
+        font-weight: 550;
+        border-bottom: 6px solid #000;
     }
-
-    .swiper-button-prev:hover {
-        transform: translateX(-10px);
-    }
-
-    .swiper-button-next:hover {
-        transform: translateX(10px);
-    }
-
-    .swiper-button-next:after,
-    .swiper-container-rtl .swiper-button-prev:after {
-        content: "";
-        width: 80px;
-        height: 60px;
-        background: url('../img/item/next.png') center / cover no-repeat;
-    }
-
-    .swiper-button-prev:after,
-    .swiper-container-rtl .swiper-button-next:after {
-        content: "";
-        width: 80px;
-        height: 60px;
-        background: url('../img/item/prev.png') center / cover no-repeat;
-    }
-</style>
-
-<style>
-    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
-        bottom: 0;
-    }
-
-    .swiper-pagination-bullet {
-        bottom: 0;
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        background: transparent url('../img/item/page_off.png') center/cover no-repeat;
-    }
-
-    .swiper-pagination-bullet-active {
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        background: transparent url('../img/item/page_on.png') center/cover no-repeat;
-        background-size: cover;
-    }
+    
 </style>

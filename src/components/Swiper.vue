@@ -1,13 +1,19 @@
 <template>
   <div class="wrap-swiper">
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide v-for="(img, i) in imgs" :key="i">
-        <img class="img-slide" :src="require(`../img/${img}.jpg`)" >
+      <swiper-slide v-for="(video, i) in videoLink" :key="i">
+        <div class="img-slide" >
+          <img @click="videoOpen = video ,isOpenVideo = true" :src="`https://i.ytimg.com/vi/${video}/maxresdefault.jpg`" >
+          <div @click="videoOpen = video ,isOpenVideo = true" class="img-play"></div>
+        </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
+    <div v-if="isOpenVideo" class="wrap-modal" @click="isOpenVideo = false">
+      <div class="modal-video">
+          <iframe width="854" height="480" :src="`https://www.youtube.com/embed/${videoOpen}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -29,20 +35,27 @@
     },
     data() {
       return {
-        imgs: ['modstard', 'liyue', 'inazuma'],
+        videoLink: ['SO__VQZirJ4', 'dzpmNU8WJVg', 'HnElxo1lghU', 'EiAhMr6IJTQ','OrZ8RbXwoK4','GJiO22r9418'],
+        isOpenVideo: false,
+        videoOpen: "",
         swiperOption: {
-          slidesPerView: 1,
-          spaceBetween: 30,
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+          },
           pagination: {
-            el: '.swiper-pagination',
-            clickable: true
+            el: '.swiper-pagination'
           },
-           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          },
-          loop: true,
+          loop: true
         }
+      
       }
     },
   }
@@ -68,27 +81,35 @@
 <style scoped>
   .wrap-swiper {
     padding: 0 60px;
-    padding-top: 100px;
     padding-bottom: 40px;
   }
 
   .img-slide {
-    width: 70%;
+    position: relative;
+    width: 76%;
     display: block;
     margin: auto;
-    border-radius: 4px;
+    border: 20px double;
+    border-image: url('../img/item/border.png') 38 round;
+    position: relative;
+    cursor: pointer;
   }
 
-  .img-character {
+  .img-slide img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .img-play {
+    background: url('../img/item/play.png') center / contain no-repeat;
+    height: 76px;
+    width: 76px;
     position: absolute;
-    top: 0;
-    right: 40px;
-    opacity: 0;
-    transition: opacity 1s;
-  }
-
-  .img-character-active {
-    opacity: 1;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    z-index: 10;
+    filter: brightness(2.0);
   }
 
   .swiper-pagination {
@@ -99,32 +120,25 @@
     padding: 40px 0;
   }
 
-  .swiper-button-prev, .swiper-button-next {
-    width: 80px;
-    height: 60px;
-    transition: transform linear .3s;
+  .wrap-modal {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 20;
   }
 
-  .swiper-button-prev:hover {
-    transform: translateX(-10px);
-  }
-
-  .swiper-button-next:hover {
-    transform: translateX(10px);
-  }
-
-  .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
-    content: "";
-    width: 80px;
-    height: 60px;
-    background: url('../img/item/next.png') center / cover no-repeat;
-  }
-
-  .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
-    content: "";
-    width: 80px;
-    height: 60px;
-    background: url('../img/item/prev.png') center / cover no-repeat;
+  .modal-video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 854px;
+    height: 480px;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: #fff;
+    z-index: 9999;
   }
 
 </style>

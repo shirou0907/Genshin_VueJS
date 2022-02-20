@@ -24,8 +24,9 @@ export default {
 <style scoped>
   .error-page {
     background-color: #393b40;
-    padding-top: 100px;
+    padding-top: 110px;
     border: 38px double #000;
+    min-height: 100vh;
     border-image: url('../img/item/border.png') 38 round;
   } 
 

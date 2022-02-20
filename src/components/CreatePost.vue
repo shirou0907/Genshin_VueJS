@@ -25,7 +25,14 @@
                     <iframe width="540" height="360" :src="videoLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="btn-submit" :class="{'btn-submit-active': check}" @click="createPost()">Đăng</div>
+            <div class="d-flex">
+                <div class="btn-submit" :class="{'btn-submit-active': check}" @click="createPost()">Đăng</div>
+                <div v-if="isLoading" class="d-flex mt-2">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -40,6 +47,7 @@
                 img: "",
                 video: "",
                 check: false,
+                isLoading: false,
                 user: this.$store.state.user,
             }
         },
@@ -58,6 +66,7 @@
         methods: {
             async createPost() {
             var vm = this
+            vm.isLoading = true;
                 if(this.check) {
                     var title = this.title;
                     var description = this.description;
@@ -75,7 +84,8 @@
                     this.description = "",
                     this.img = "",
                     this.video=""
-                    // this.$router.push('/user/posts')
+                    this.isLoading = false
+                    this.$router.push('/news')
                 }
             }
         }
@@ -115,6 +125,7 @@
     }
 
     .btn-submit {
+        margin-right: 20px;
         width: 300px;
         background-color: #ccc;
         text-align: center;

@@ -23,7 +23,7 @@
           <div class="user-p disabled">{{user.email}}</div>
           <div v-if="!isEdit" class="user-p user-p-active">{{user.name}}</div>
           <input v-if="isEdit" class="post-input" type="text" :placeholder="user.name" v-model="name">
-          <div v-if="!isEdit" class="user-p user-p-active"><a :href="user.photo">Link</a></div>
+          <div v-if="!isEdit" class="user-p user-p-active"><img width=200 height=200 :src="user.photo" ></div>
           <input v-if="isEdit" class="post-input" type="text" :placeholder="user.photo" v-model="photo">
         </div>
       </div>
@@ -81,6 +81,7 @@
         }
 
         vm.isLoading = false;
+        vm.isEdit = false;
       }
     }
   }
