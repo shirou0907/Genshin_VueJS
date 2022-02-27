@@ -89,7 +89,7 @@ export default {
             .then(function (response) {
                 vm.posts = response.data
                 vm.comments = response.data.comments
-                setTimeout(()=>vm.isLoading = false, 300)
+                vm.isLoading = false
             })
             .catch(function (error) {
                 console.log(error);

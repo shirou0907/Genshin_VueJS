@@ -37,18 +37,18 @@
                 </div>
             </div>
 
-            <TabNew :isActive="isActived" :key="componentKey"></TabNew>
+            <NewTab :isActive="isActived" :key="componentKey"></NewTab>
 
         </div>
     </div>
 </template>
 
 <script>
-    import TabNew from "./TabNew.vue"
+    import NewTab from "./NewTab.vue"
     import axios from "axios"
     export default {
         components: {
-            TabNew
+            NewTab
         },
         data() {
             return {
@@ -115,7 +115,8 @@
         padding-left: 80px;
         padding-right: 80px;
         padding-bottom: 80px;
-        background: url('../img/background3.jpg');
+        background: url('../img/background3.jpg') center / cover  no-repeat;
+        min-height: 100vh;
     }
 
     .wrap-slide {
@@ -123,13 +124,13 @@
         background-color: #393b40;
         border-radius: 4px;
         color: #fff;
-        font-size: 18px;
+        font-size: 18px; 
     }
 
     .slide-img {
         border-radius: 4px;
         overflow: hidden;
-        height: 240px;
+        height: 268px;
     }
 
     .wrap-slide:hover .img-slide {
@@ -362,5 +363,28 @@
         margin: 0 auto;
         text-align: center;
         background-color: #888;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .new-slide {
+            padding: 0 10px;
+            padding-top: 120px;
+        }
+
+        .wrap-slide {
+            margin-bottom: 16px;
+        }
+        
+        .new {
+            padding: 20px 10px;
+        }
+
+        .slide-title {
+            margin-bottom: 10px;
+        }
+
+        .slide-img {
+            height: unset;
+        }
     }
 </style>

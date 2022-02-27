@@ -13,7 +13,7 @@
     </section>
 
     <div v-if="isActive==2" class="row wrap-new">
-        <div v-show="!isLoading" class="post-wrap col col-6 col-md-12" v-for="(post, i) in posts" :key="i">
+        <div v-show="!isLoading" class="post-wrap col col-12" v-for="(post, i) in posts" :key="i">
             <router-link :to="{ name: 'detail', params: { id: post._id }}" class="post ">
                 <div class="photo">
                     <img :src="post.imgUrl" alt="" class="">
@@ -29,7 +29,7 @@
     </div>
 
     <h2 v-if="isActive==1">
-         <div v-show="!isLoading" class="post-wrap col col-6 col-md-12" v-for="(postv2, i) in postsv2" :key="i">
+         <div v-show="!isLoading" class="post-wrap col col-12" v-for="(postv2, i) in postsv2" :key="i">
             <router-link :to="{ name: 'detail', params: { id: postv2._id }}" class="post ">
                 <div class="photo">
                     <img :src="postv2.imgUrl" alt="" class="">
@@ -45,7 +45,7 @@
     </h2>
 
     <h2 v-if="isActive==3">
-        <div v-show="!isLoading" class="post-wrap col col-6 col-md-12" v-for="(post, i) in postsv2" :key="i">
+        <div v-show="!isLoading" class="post-wrap col col-12" v-for="(post, i) in postsv2" :key="i">
             <router-link :to="{ name: 'detail', params: { id: post._id }}" class="post ">
                 <div class="photo">
                     <img :src="post.imgUrl" alt="" class="">
@@ -241,6 +241,21 @@ export default {
     }
     25% {
         transform: translateY(-30px);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .post {
+        flex-direction: column;
+    }
+
+    .photo img {
+        width: 100%;
+        padding-top: 6px;
+    }
+
+    .title {
+        padding-left: 0;
     }
 }
 </style>

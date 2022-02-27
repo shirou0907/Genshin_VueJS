@@ -91,8 +91,8 @@
 </template>
 
 <script>
-import Swiper from './Swiper.vue'
-import Slide from './Slide.vue'
+import Swiper from './IntroSwiper.vue'
+import Slide from './IntroSlide.vue'
 export default {
     components: {Swiper, Slide},
     data() {

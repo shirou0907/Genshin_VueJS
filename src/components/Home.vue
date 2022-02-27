@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <div class="app-trailer">
-            <div class="wrapVideo">
+            <div v-responsive.lg.xl class="wrapVideo">
                 <video ref="videoRef" class="openingVideo" muted="muted" loop="loop" autoplay="true">
                     <source src="../img/video.mp4" type="video/mp4">
                 </video>
@@ -27,6 +27,10 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="home-main">
+                <img src="https://genshin.hoyoverse.com/_nuxt/img/09cac33.png" alt="" class="main-img">
             </div>
         </div>
 
@@ -116,7 +120,7 @@
                 </div>
             </div>
             <div class="option-description">
-                <Option :option="choose"/>
+                <HomeOption :option="choose"/>
             </div>
         </div>
 
@@ -124,12 +128,12 @@
 </template>
 
 <script>
-    import Option from './Option.vue'
+    import HomeOption from './HomeOption.vue'
     export default {
-        components: {Option},
+        components: {HomeOption},
         data() {
             return {
-                showContact: false,
+                showContact: true,
                 enableContact: false,
                 options: [
                         {name: 'Window', isChoose: true},
@@ -200,6 +204,16 @@
         opacity: .9;
     }
 
+    .home-main {
+        min-height: 100vh;
+        background: url('../img/mobile_home.jpg') center / cover  no-repeat;
+    }
+
+    .main-img {
+        width: 100%;
+        padding-top: 120px;
+    }
+
     .home-slide {
         position: relative;
     }
@@ -235,6 +249,7 @@
         transition: opacity 1s;
         opacity: 1;
         background-color: #f0f0f0;
+        box-shadow: 0 1px 1px #000;
         animation: fadeOut ease-in-out .4s;
     }
 
@@ -366,4 +381,13 @@
         border-bottom: 6px solid #000;
     }
     
+    @media only screen and (max-width: 600px) {
+        .option-item {
+            font-size: 16px;
+        }
+
+        .wrap-option {
+            padding: 60px 20px;
+        }
+    }
 </style>

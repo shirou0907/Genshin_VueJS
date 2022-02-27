@@ -81,6 +81,9 @@
             }
         },
         methods: {
+            handleView() {
+                this.mobileView = window.innerWidth <= 1024;
+            },
             logout() {
                 this.$store.state.isLogin = false;
                 this.$store.state.user = "";
@@ -99,7 +102,7 @@
         updated() {
             this.$refs.audioPlay.muted = !this.openMusic;
             this.$refs.audioPlay2.muted = !this.openMusic;
-        }
+        }, 
     }
 </script>
 
@@ -113,11 +116,15 @@
         display: flex;
         justify-content: space-between;
         padding: 0 12px;
+        height: 70px;
         background: url('../.././img/header-background.png');
         position: fixed;
+        width: 100%;
+        min-width: 1280px;
         left: 0;
-        right: 0;
-        opacity: .95;
+        top: 0;
+        opacity: .9;
+        box-shadow: 0 1px 6px #000;
         z-index: 10000;
     }
 
@@ -135,7 +142,7 @@
         align-items: center;
         justify-content: space-around;
         padding-left: 30px;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .header-link-item {
@@ -166,7 +173,7 @@
     }
 
     .user-logo img {
-        max-width: 40px;
+        max-width: 32px;
         border-radius: 50%;
         box-shadow: 0 0 1px 1px #fff;
     }

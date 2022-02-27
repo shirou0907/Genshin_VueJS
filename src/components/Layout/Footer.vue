@@ -114,4 +114,17 @@
         color: rgb(182, 179, 179);
         font-size: 14px;
     }
+
+    @media only screen and (max-width: 600px) {
+        .footer-logo {
+            display: block;
+            margin: auto;
+        }
+        .footer-contact {
+            display: block;
+            flex: unset;
+            width: 100%;
+            text-align: center;
+        }
+    }
 </style>
