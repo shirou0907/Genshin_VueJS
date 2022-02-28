@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="home-main">
+            <div class="home-main" v-responsive.sm.xs>
                 <img src="https://genshin.hoyoverse.com/_nuxt/img/09cac33.png" alt="" class="main-img">
             </div>
         </div>
