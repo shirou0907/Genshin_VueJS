@@ -366,6 +366,8 @@
 
     .option-item {
         margin-top: 30px;
+        min-width: 120px;
+        text-align: center;
         padding: 0 30px;
         font-size: 24px;
         font-weight: 500;
@@ -382,6 +384,10 @@
     }
     
     @media only screen and (max-width: 600px) {
+        .home-title {
+            font-size: 28px;
+        }
+
         .option-item {
             font-size: 16px;
         }

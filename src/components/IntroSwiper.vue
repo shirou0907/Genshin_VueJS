@@ -140,4 +140,25 @@
     z-index: 9999;
   }
 
+     @media only screen and (max-width: 600px) {
+        .img-slide {
+            width: 100%;
+        }
+
+        .swiper-container {
+          padding: 0;
+          padding-bottom: 40px;
+        }
+
+        .modal-video {
+          width: 300px;
+          height: 200px;
+        }
+
+        .modal-video iframe {
+          width: 100%;
+          height: 100%;
+        }
+    }
+
 </style>

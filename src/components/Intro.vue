@@ -207,4 +207,60 @@ export default {
         margin-top: 30px;
         color: #654f42;
     }
+
+    @media only screen and (max-width: 600px) {
+        .intro-img {
+            min-height: 52vh;
+        }
+        
+        .intro-slogan {
+            width: 100%;
+        }
+
+        .new-title {
+            font-size: 24px;
+        }
+
+        .new-title:after, .new-title::before {
+            width: 80px;
+        }
+        .wrap-swiper {
+            padding: 20px 0;
+        }
+
+        .img-slide {
+            width: 100%;
+        }
+
+        .intro-feature {
+            margin-bottom: 0;
+        }
+
+        .feature-img {
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+
+        .feature-img img {
+            position: unset;
+            padding:0 8px;
+            width: 100%;
+            height: 200px;
+        }
+
+        .feature-info {
+            position: unset;
+            width: 100%;
+            height: 200px;
+            background: url(https://genshin.hoyoverse.com/_nuxt/img/e15f334.png) center/cover no-repeat;
+        }
+
+        .feature-title {
+            font-size: 14px;
+        }
+
+        .feature-p {
+            font-size: 12px;
+        }
+    }
 </style>

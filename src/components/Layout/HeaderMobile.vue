@@ -89,8 +89,8 @@
 
 <style scoped>
     .active {
-        color: #69e0ff !important;
         font-weight: bold;
+        border-left: 4px solid #69e0ff;
     }
 
     .header {

@@ -12,13 +12,13 @@
       <div v-if="!isEdit" class="user-btn" @click="isEdit=true">Đổi</div>
       <hr>
       <div class="user-info row">
-        <div class="col col-md-4">
+        <div class="col-4 col-md-4">
           <div class="user-p disabled">ID: </div>
           <div class="user-p disabled">Email: </div>
           <div class="user-p">Tên người dùng: </div>
           <div class="user-p">Ảnh đại diện: </div>
         </div>
-        <div class="col col-md-8">
+        <div class="col-8 col-md-8">
           <div class="user-p disabled">{{user._id}}</div>
           <div class="user-p disabled">{{user.email}}</div>
           <div v-if="!isEdit" class="user-p user-p-active">{{user.name}}</div>
@@ -130,4 +130,19 @@
     border-radius: 16px;
     padding: 12px 16px;
   }
+
+  @media only screen and (max-width: 600px) {
+        .user-p {
+            font-size: 12px;
+        }
+
+        .user-p img {
+          width: 100%;
+          max-height: 150px;
+        }
+
+        .post-input {
+          width: 100%;
+        }
+    }
 </style>

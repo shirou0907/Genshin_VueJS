@@ -283,7 +283,7 @@
     margin: auto;
     box-shadow: 0 0 1px #fff;
     animation: example linear .2s;
-    z-index: 5;
+    z-index: 999;
   }
 
   .toast-login-succ {
@@ -300,7 +300,7 @@
     margin: auto;
     box-shadow: 0 0 1px #fff;
     animation: example linear .2s;
-    z-index: 5;
+    z-index: 999;
   }
 
   .toast-icon {
@@ -324,7 +324,7 @@
     border-radius: 4px;
     margin: auto;
     box-shadow: 0 20px 100px #000;
-    z-index: 9999;
+    z-index: 99;
   }
 
   .login-exit {

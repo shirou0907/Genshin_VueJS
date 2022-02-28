@@ -125,6 +125,10 @@
         padding: 1rem 0.5rem;
     }
 
+    tr {
+        border: none;
+    }
+
     #sort:hover {
         cursor: pointer;
     }

@@ -5,7 +5,29 @@
             <div id="loading-content"></div>
         </div>
         <div class="new-slide">
-            <div class="row">
+            <div class="wrap-swiper" v-responsive.sm.xs>
+                <swiper class="swiper" :options="swiperOption">
+                    <swiper-slide v-for="(post, i) in posts" :key="i">
+                        <router-link :to="{ name: 'detail', params: { id: post._id }}" style="text-decoration:none;"
+                            class="col col-12 col-md-4">
+                            <div class="wrap-slide">
+                                <div class="slide-img">
+                                    <img class="img-slide" :src="post.imgUrl" alt="">
+                                </div>
+                                <div class="slide-title">
+                                    {{post.title}}
+                                </div>
+                                <div class="slide-info">
+                                    <div class="slide-date">{{post.createdAt}}</div>
+                                    <div class="slide-type">Thông tin</div>
+                                </div>
+                            </div>
+                        </router-link>
+                    </swiper-slide>
+                    <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
+            </div>
+            <div class="row" v-responsive.lg.xl>
                 <router-link :to="{ name: 'detail', params: { id: post._id }}" style="text-decoration:none;"
                     class="col col-12 col-md-4" v-for="(post, i) in posts" :key="i">
                     <div class="wrap-slide">
@@ -44,11 +66,20 @@
 </template>
 
 <script>
+    import {
+        Swiper,
+        SwiperSlide
+    } from 'vue-awesome-swiper'
+    import 'swiper/css/swiper.css'
     import NewTab from "./NewTab.vue"
     import axios from "axios"
     export default {
+        name: 'swiper-example-multiple-slides-per-biew',
+        title: 'Multiple slides per view',
         components: {
-            NewTab
+            NewTab,
+            Swiper,
+            SwiperSlide
         },
         data() {
             return {
@@ -76,7 +107,20 @@
                 ],
                 isLoading: true,
                 isActived: 1,
-                componentKey: 0
+                componentKey: 0,
+                swiperOption: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
+                    loop: true,
+                }
             }
         },
         methods: {
@@ -115,7 +159,7 @@
         padding-left: 80px;
         padding-right: 80px;
         padding-bottom: 80px;
-        background: url('../img/background3.jpg') center / cover  no-repeat;
+        background: url('../img/background3.jpg') center / cover no-repeat;
         min-height: 100vh;
     }
 
@@ -124,7 +168,7 @@
         background-color: #393b40;
         border-radius: 4px;
         color: #fff;
-        font-size: 18px; 
+        font-size: 18px;
     }
 
     .slide-img {
@@ -211,7 +255,7 @@
         text-align: center;
         background-color: #fff;
         border-radius: 6px;
-        margin-right: 30px;
+        margin:0 10px;
     }
 
     .category-link:hover {
@@ -365,18 +409,86 @@
         background-color: #888;
     }
 
+    .wrap-swiper {
+        padding: 0 60px;
+        padding-bottom: 40px;
+    }
+
+    .img-slide {
+        width: 80%;
+        display: block;
+        margin: auto;
+        border-radius: 4px;
+    }
+
+    .img-character {
+        position: absolute;
+        top: 0;
+        right: 40px;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .img-character-active {
+        opacity: 1;
+    }
+
+    .swiper-pagination {
+        bottom: 0;
+    }
+
+    .swiper-container {
+        padding: 40px 0;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 80px;
+        height: 60px;
+        transition: transform linear .3s;
+    }
+
+    .swiper-button-prev:hover {
+        transform: translateX(-10px);
+    }
+
+    .swiper-button-next:hover {
+        transform: translateX(10px);
+    }
+
+    .swiper-button-next:after,
+    .swiper-container-rtl .swiper-button-prev:after {
+        content: "";
+        width: 80px;
+        height: 60px;
+        background: url('../img/item/next.png') center / cover no-repeat;
+    }
+
+    .swiper-button-prev:after,
+    .swiper-container-rtl .swiper-button-next:after {
+        content: "";
+        width: 80px;
+        height: 60px;
+        background: url('../img/item/prev.png') center / cover no-repeat;
+    }
+
     @media only screen and (max-width: 600px) {
         .new-slide {
-            padding: 0 10px;
+            padding: 10px;
             padding-top: 120px;
+            min-height: unset;
         }
 
         .wrap-slide {
-            margin-bottom: 16px;
+            margin-bottom: 36px;
         }
-        
+
         .new {
-            padding: 20px 10px;
+            padding: 20px;
+        }
+
+        .new-title:after, .new-title::before {
+            width: 120px;
         }
 
         .slide-title {
@@ -384,7 +496,15 @@
         }
 
         .slide-img {
-            height: unset;
+            height: 228px;
+        }
+
+        .wrap-swiper {
+            padding: 0 10px;
+        }
+
+        .swiper-container {
+            padding: 0;
         }
     }
 </style>

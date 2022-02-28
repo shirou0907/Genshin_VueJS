@@ -2,6 +2,13 @@
   <div class="wrap-post">
       <Loading v-show="isLoading"/>
 
+      <div v-show="!isLoading" class="post-slug">
+          <router-link to="/home">Home >> </router-link>  
+          <router-link to="/news">New >> </router-link> 
+          <router-link to="">Detail >></router-link>
+          <router-link to=""> {{$route.params.id}}</router-link>
+      </div>
+
       <div v-show="!isLoading" class="detail-post">
         <div class="post">
             <div class="post-info">
@@ -133,8 +140,21 @@ export default {
 <style scoped>
     .wrap-post {
         background: url('../img/background.png');
-        padding-top: 140px;
+        padding-top: 100px;
         padding-bottom: 60px;
+    }
+
+    .post-slug {
+        padding: 10px 120px;
+    }
+
+    .post-slug a {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    .post-slug a:hover {
+        color: #f0f0f0;
     }
 
     .post-info {
@@ -155,8 +175,7 @@ export default {
         margin: auto;
         width: 80%;
         background-color: #f0f0f0;
-        border: 2px solid #ccc;
-        border-radius: 6px;
+        border-top: 6px solid rgb(226, 168, 43);
         padding: 60px;
     }
     
@@ -241,5 +260,53 @@ export default {
         margin-top: 20px;
     }
 
+
+@media only screen and (max-width: 600px) {
+    .detail-post {
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    .post-slug {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .photo-wrap {
+        padding: 0;
+    }
+
+    .photo {
+        width: 100%;
+    }
+
+    .user-info {
+        margin-right: 10px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .date {
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .youtube-video {
+        width: 100%;
+        height: 238px;
+    }
+
+    .youtube-video iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
 
 </style>

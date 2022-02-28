@@ -1,7 +1,7 @@
 <template>
   <div v-if="$store.state.isLogin" class="wrap-user">
       <div class="row user">
-            <div class="col col-md-4">
+            <div class="user-option col-12 col-md-4">
                 <div class="user-setting">
                     <div class="user-title">Quản lý tài khoản</div>
                     <hr>
@@ -10,7 +10,7 @@
                     <router-link :to="{name: 'password'}" active-class="active" class="user-link">Thay đổi mật khẩu</router-link>
                 </div>
             </div>
-            <div class="col col-md-8">
+            <div class="user-content col-12 col-md-8">
                 <router-view class="user-setting"></router-view>
             </div>
       </div>
@@ -71,5 +71,27 @@ export default {
         font-weight: 600;
     }
 
+    @media only screen and (max-width: 600px) {
+        .wrap-user {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .user {
+            --bs-gutter-x: 0;
+        }
+
+        .user-option {
+            margin-bottom: 20px;
+        }
+
+        .user-link {
+            font-size: 14px;
+        }
+
+        .user-setting{
+            font-size: 12px;
+        }
+    }
 
 </style>>

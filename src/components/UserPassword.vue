@@ -134,4 +134,18 @@
     .btn-submit:hover {
         background-color: rgb(69, 69, 214);
     }
+
+    @media only screen and (max-width: 600px) {
+        .user-password {
+            padding: 0 10px; 
+        }
+
+        .btn-submit {
+            width: unset;
+        }
+
+        .user-setting {
+            padding: 10px 30px;
+        }
+    }
 </style>

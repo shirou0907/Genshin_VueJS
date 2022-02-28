@@ -126,4 +126,13 @@
     background: url('../img/item/prev.png') center / cover no-repeat;
   }
 
+  @media only screen and (max-width: 600px) {
+    .swiper-container {
+      padding: 10px 20px;
+    }
+
+    .img-slide {
+      width: 100%;
+    }
+  }
 </style>

@@ -150,4 +150,24 @@
         overflow: hidden;
         box-shadow: 0 1px 1px #ccc;
     }
+
+    @media only screen and (max-width: 600px) {
+        .wrap {
+            padding: 100px 20px;
+        }
+
+        .view {
+            width: 100%;
+            height: 200px;
+        }
+
+        .view iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-submit {
+            width: unset;
+        }
+    }
 </style>
